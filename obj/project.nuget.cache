@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "U4sXpT5Gmo+DogR2p3lqVN1HDmRJgDa81/BojoEZyAXOcBebyqRGac0cXkKwFK0XitS1+aBs/fRF2pWilHbzLw==",
+  "success": true,
+  "projectFilePath": "/run/media/igor/fb763c35-863a-463e-bcbc-67d28cb9ae0b/Asp.Challenge/Asp.Challenge.csproj",
+  "expectedPackageFiles": [
+    "/home/igor/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.11/microsoft.aspnetcore.app.ref.7.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}
