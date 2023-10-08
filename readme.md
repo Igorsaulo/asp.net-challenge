@@ -32,6 +32,31 @@ $ git clone https://github.com/Igorsaulo/asp.net-challenge.git
 ### NestJs
 <p>Para inciar o servidor NestJs siga os seguintes passos:</p>
 
+### Usando Docker
+<p>Para exeutar a aplicação usando o docker, siga os seguintes passos:</p>
+
+#### Certifique-se que o docker está instalado:
+```bash
+$ docker -v
+```
+
+#### Entre no repositório do NestJs:
+```bash
+$ cd asp.net-challenge/NestJs-Api
+```
+
+#### Crie a imagem do docker:
+```bash
+$ docker build -t nestjs-api .
+```
+
+#### Execute o container:
+```bash
+$ docker run -p 3000:3000 nestjs-api
+```
+
+### Usando npm
+
 #### Entre no repositório do NestJs:
 ```bash
 $ cd asp.net-challenge/NestJs-Api
