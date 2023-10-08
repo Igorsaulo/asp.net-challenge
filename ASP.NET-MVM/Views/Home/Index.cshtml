@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div 
+    style="
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    ">
+    <div class="text-start">
+        <h1 class="display-4">Olá</h1>
+        <p>Este projeto analisa e retornar informações de video</p>
+        <p>Para começar, selecione um arquivo de video abaixo</p>
+        <form id="uploadForm" method="post" enctype="multipart/form-data">
+            <input type="file" name="Video">
+            <input type="button" value="Enviar" onclick="readFile()">
+        </form>
+    </div>
+    <div id="result" style="display: none" class="text-end">
+        
+    </div>
+</div>
+
+<script>
+function uploadFile(formData) {
+  return fetch("/api/video/upload", {
+    method: "POST",
+    body: formData
+  }).then(function (response) {
+    if (!response.ok) {
+      throw new Error("Erro na requisição: " + response.status);
+    }
+    return response.json();
+  }).catch(function (error) {
+    console.error("Erro na requisição:", error);
+  });
+}
+
+function createResult(data) {
+    document.getElementById("result").style.display = "flex";
+    document.getElementById("result").style.flexDirection = "column";
+    const result = document.getElementById("result");
+    const div = document.createElement("div");
+    div.id = "viewResult";
+    div.innerHTML = `<h1>Resultado</h1>
+    <p>Tamanho do arquivo ${data.size}</p>
+    <p>Duração do vídeo ${data.duration}</p>
+    <p>Resolução do vídeo ${data.resolution}</p>
+    <p>FPS do vídeo ${data.frameRate}</p>
+    <p>Codec do vídeo: ${data.videoCodec}</p>
+    <p>Codec do áudio: ${data.audioCodec}</p>
+    <p>Canais de áudio: ${data.audioChannels}</p>
+    <p>Taxa de amostragem de áudio: ${data.audioSampleRate}</p>`;
+    result.appendChild(div);
+}
+
+function removeResult() {
+    const result = document.getElementById("result");
+    const div = document.getElementById("viewResult");
+    if (div) {
+        result.removeChild(div);
+    }
+}
+
+function readFile() {
+    var form = document.getElementById("uploadForm");
+    var formData = new FormData();
+    formData.append("file", form[0].files[0]);
+    
+    removeResult();
+
+    uploadFile(formData).then(function (data) {
+        console.log(data);
+        createResult(data);
+    });
+}
+</script>
